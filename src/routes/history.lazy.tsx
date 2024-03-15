@@ -1,9 +1,50 @@
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableColumn,
+  TableHeader,
+  TableRow,
+} from "@nextui-org/react"
 import { createLazyFileRoute } from "@tanstack/react-router"
 
 export const Route = createLazyFileRoute("/history")({
   component: () => (
     <>
-      <p>Hello Router History Page</p>
+      <Table aria-label="Example static collection table">
+        <TableHeader>
+          <TableColumn>Location</TableColumn>
+          <TableColumn>For</TableColumn>
+          <TableColumn>STATUS</TableColumn>
+          <TableColumn>Date</TableColumn>
+        </TableHeader>
+        <TableBody>
+          <TableRow key="1">
+            <TableCell>Tony Reichert</TableCell>
+            <TableCell>CEO</TableCell>
+            <TableCell>Active</TableCell>
+            <TableCell>Active</TableCell>
+          </TableRow>
+          <TableRow key="2">
+            <TableCell>Zoey Lang</TableCell>
+            <TableCell>Technical Lead</TableCell>
+            <TableCell>Paused</TableCell>
+            <TableCell>Paused</TableCell>
+          </TableRow>
+          <TableRow key="3">
+            <TableCell>Jane Fisher</TableCell>
+            <TableCell>Senior Developer</TableCell>
+            <TableCell>Active</TableCell>
+            <TableCell>Active</TableCell>
+          </TableRow>
+          <TableRow key="4">
+            <TableCell>William Howard</TableCell>
+            <TableCell>Community Manager</TableCell>
+            <TableCell>Vacation</TableCell>
+            <TableCell>Vacation</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
     </>
   ),
 })

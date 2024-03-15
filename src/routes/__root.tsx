@@ -5,14 +5,16 @@ import { Outlet, createRootRoute } from "@tanstack/react-router"
 
 export const Route = createRootRoute({
   component: () => (
-    <ConfigContextProvider>
-      <Sidebar />
-      <div className="lg:col-span-8">
-        <Footer />
-        <main className="p-2">
-          <Outlet />
-        </main>
-      </div>
-    </ConfigContextProvider>
+    <div className="grid lg:grid-cols-10 lg:container">
+      <ConfigContextProvider>
+        <Sidebar />
+        <div className="lg:col-span-8">
+          <Footer />
+          <main className="p-2 lg:p-3 lg:col-span-8">
+            <Outlet />
+          </main>
+        </div>
+      </ConfigContextProvider>
+    </div>
   ),
 })
