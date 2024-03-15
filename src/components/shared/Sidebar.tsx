@@ -1,5 +1,5 @@
 import { ConfigContext } from "@/providers/ConfigContext"
-import { Link, useNavigate } from "@tanstack/react-router"
+import { Link } from "@tanstack/react-router"
 import {
   Bell,
   ChevronLeft,
@@ -12,7 +12,6 @@ import {
 import { useContext } from "react"
 
 const Sidebar = () => {
-  const navigator = useNavigate()
   const { isSidebarOpen, toggleSidebar } = useContext(ConfigContext)
   return (
     <aside
@@ -35,6 +34,7 @@ const Sidebar = () => {
             <Link
               to={item?.to}
               className="font-semibold uppercase justify-start rounded flex items-center p-3 gap-3 duration-300 ease-in-out transition-all"
+              // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
               key={index}
               activeProps={{
                 className: "rounded-r-2xl bg-background text-foreground",
