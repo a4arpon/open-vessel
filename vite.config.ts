@@ -15,10 +15,6 @@ export default defineConfig({
       injectRegister: "auto",
       base: "/",
       includeAssets: ["favicon.ico"],
-      devOptions: {
-        type: "module",
-        enabled: true,
-      },
     }),
   ],
   resolve: {
