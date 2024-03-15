@@ -8,9 +8,9 @@ import {
 
 const PostCard = () => {
   return (
-    <Card className="w-3/5">
-      <CardHeader className="justify-between">
-        <div className="flex gap-5">
+    <Card className="w-3/5 z-0">
+      <CardHeader className="justify-between z-0">
+        <div className="flex gap-5 z-0">
           <Avatar
             isBordered
             radius="full"
@@ -34,7 +34,7 @@ const PostCard = () => {
           "Unfollow"
         </Button>
       </CardHeader>
-      <CardBody className="px-3 py-2 text-small ">
+      <CardBody className="px-3 py-2 text-small z-0">
         <p>
           Frontend developer and UI/UX enthusiast. Join me on this coding
           adventure!
