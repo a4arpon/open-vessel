@@ -20,6 +20,7 @@ const ConfigContextProvider = ({ children }: { children: React.ReactNode }) => {
     isSidebarOpen,
     toggleSidebar,
   }
+
   return (
     <ConfigContext.Provider value={config}>{children}</ConfigContext.Provider>
   )
