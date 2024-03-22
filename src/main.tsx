@@ -2,6 +2,7 @@ import { RouterProvider, createRouter } from "@tanstack/react-router"
 import React from "react"
 import ReactDOM from "react-dom/client"
 import { HelmetProvider } from "react-helmet-async"
+import { Toaster } from "react-hot-toast"
 import "./index.css"
 import ConfigContextProvider from "./providers/ConfigContext"
 import { routeTree } from "./routeTree.gen"
@@ -22,6 +23,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <ConfigContextProvider>
         <RouterProvider router={router} />
       </ConfigContextProvider>
+      <Toaster />
     </HelmetProvider>
   </React.StrictMode>
 )

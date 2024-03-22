@@ -16,6 +16,7 @@ import { Route as rootRoute } from './routes/__root'
 
 // Create Virtual Routes
 
+const VerifyLazyImport = createFileRoute('/verify')()
 const ProfileLazyImport = createFileRoute('/profile')()
 const PostLazyImport = createFileRoute('/post')()
 const NotificationsLazyImport = createFileRoute('/notifications')()
@@ -24,6 +25,11 @@ const AuthLazyImport = createFileRoute('/auth')()
 const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
+
+const VerifyLazyRoute = VerifyLazyImport.update({
+  path: '/verify',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/verify.lazy').then((d) => d.Route))
 
 const ProfileLazyRoute = ProfileLazyImport.update({
   path: '/profile',
@@ -83,6 +89,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProfileLazyImport
       parentRoute: typeof rootRoute
     }
+    '/verify': {
+      preLoaderRoute: typeof VerifyLazyImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -95,6 +105,7 @@ export const routeTree = rootRoute.addChildren([
   NotificationsLazyRoute,
   PostLazyRoute,
   ProfileLazyRoute,
+  VerifyLazyRoute,
 ])
 
 /* prettier-ignore-end */
