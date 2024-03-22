@@ -1,7 +1,9 @@
 import { RouterProvider, createRouter } from "@tanstack/react-router"
 import React from "react"
 import ReactDOM from "react-dom/client"
+import { HelmetProvider } from "react-helmet-async"
 import "./index.css"
+import ConfigContextProvider from "./providers/ConfigContext"
 import { routeTree } from "./routeTree.gen"
 
 const router = createRouter({ routeTree })
@@ -16,6 +18,10 @@ declare module "@tanstack/react-router" {
 // biome-ignore lint/style/noNonNullAssertion: <explanation>
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <HelmetProvider>
+      <ConfigContextProvider>
+        <RouterProvider router={router} />
+      </ConfigContextProvider>
+    </HelmetProvider>
   </React.StrictMode>
 )

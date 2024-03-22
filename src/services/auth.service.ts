@@ -2,7 +2,7 @@ import appWrite from "@/lib/appwrite"
 import { Account, OAuthProvider } from "appwrite"
 
 export class AuthService {
-  account
+  private account
 
   constructor() {
     this.account = new Account(appWrite.client)

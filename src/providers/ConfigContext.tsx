@@ -16,6 +16,7 @@ const ConfigContextProvider = ({ children }: { children: React.ReactNode }) => {
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen)
   }
+
   const config = {
     isSidebarOpen,
     toggleSidebar,
