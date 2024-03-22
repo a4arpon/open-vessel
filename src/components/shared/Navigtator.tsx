@@ -3,10 +3,10 @@ import { Link } from "@tanstack/react-router"
 import { AlignJustify, Bell, Compass, UserRound } from "lucide-react"
 import { useContext } from "react"
 
-const Footer = () => {
+const Navigator = () => {
   const { toggleSidebar } = useContext(ConfigContext)
   return (
-    <footer className="bg-danger fixed lg:static bottom-0 w-full text-background flex justify-between items-center p-3 lg:col-span-8 h-fit lg:hidden z-10">
+    <footer className="bg-danger fixed lg:static bottom-0 w-full text-background flex justify-around items-center p-3 lg:col-span-8 h-fit lg:hidden z-10">
       <Link to="/">
         <Compass size={28} />
       </Link>
@@ -25,4 +25,6 @@ const Footer = () => {
   )
 }
 
-export default Footer
+export default Navigator
+
+

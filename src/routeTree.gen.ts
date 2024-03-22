@@ -17,12 +17,13 @@ import { Route as rootRoute } from './routes/__root'
 // Create Virtual Routes
 
 const VerifyLazyImport = createFileRoute('/verify')()
-const ProfileLazyImport = createFileRoute('/profile')()
 const PostLazyImport = createFileRoute('/post')()
 const NotificationsLazyImport = createFileRoute('/notifications')()
 const HistoryLazyImport = createFileRoute('/history')()
 const AuthLazyImport = createFileRoute('/auth')()
 const IndexLazyImport = createFileRoute('/')()
+const ProfileIndexLazyImport = createFileRoute('/profile/')()
+const ProfileSetupLazyImport = createFileRoute('/profile/setup')()
 
 // Create/Update Routes
 
@@ -30,11 +31,6 @@ const VerifyLazyRoute = VerifyLazyImport.update({
   path: '/verify',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/verify.lazy').then((d) => d.Route))
-
-const ProfileLazyRoute = ProfileLazyImport.update({
-  path: '/profile',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/profile.lazy').then((d) => d.Route))
 
 const PostLazyRoute = PostLazyImport.update({
   path: '/post',
@@ -61,6 +57,16 @@ const IndexLazyRoute = IndexLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
 
+const ProfileIndexLazyRoute = ProfileIndexLazyImport.update({
+  path: '/profile/',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/profile/index.lazy').then((d) => d.Route))
+
+const ProfileSetupLazyRoute = ProfileSetupLazyImport.update({
+  path: '/profile/setup',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/profile/setup.lazy').then((d) => d.Route))
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -85,12 +91,16 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PostLazyImport
       parentRoute: typeof rootRoute
     }
-    '/profile': {
-      preLoaderRoute: typeof ProfileLazyImport
-      parentRoute: typeof rootRoute
-    }
     '/verify': {
       preLoaderRoute: typeof VerifyLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/profile/setup': {
+      preLoaderRoute: typeof ProfileSetupLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/profile/': {
+      preLoaderRoute: typeof ProfileIndexLazyImport
       parentRoute: typeof rootRoute
     }
   }
@@ -104,8 +114,9 @@ export const routeTree = rootRoute.addChildren([
   HistoryLazyRoute,
   NotificationsLazyRoute,
   PostLazyRoute,
-  ProfileLazyRoute,
   VerifyLazyRoute,
+  ProfileSetupLazyRoute,
+  ProfileIndexLazyRoute,
 ])
 
 /* prettier-ignore-end */

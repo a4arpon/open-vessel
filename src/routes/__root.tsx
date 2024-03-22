@@ -1,4 +1,4 @@
-import Footer from "@/components/shared/Footer"
+import Navigator from "@/components/shared/Navigtator"
 import Sidebar from "@/components/shared/Sidebar"
 import { Outlet, createRootRoute } from "@tanstack/react-router"
 
@@ -7,7 +7,7 @@ export const Route = createRootRoute({
     <div className="grid lg:grid-cols-10 lg:container">
       <Sidebar />
       <div className="lg:col-span-8">
-        <Footer />
+        <Navigator />
         <main className="p-2 lg:p-3 lg:col-span-8">
           <Outlet />
         </main>

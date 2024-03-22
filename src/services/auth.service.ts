@@ -27,6 +27,8 @@ export class AuthService {
         toast.error("Email not verified yet. Verify first.")
         this.createVerification()
       }
+
+      return { login: true }
     } catch (error) {
       console.error("Login Error", error)
     }
@@ -58,7 +60,15 @@ export class AuthService {
     try {
       return await this.account.get()
     } catch (error) {
-      console.error("Get Profile Error", error)
+      console.error("Get Profile Error ", error)
+    }
+  }
+
+  async updateProfile(data: object) {
+    try {
+      return await this.account.updatePrefs(data)
+    } catch (error) {
+      console.log("Profile Update Error ", error)
     }
   }
 }
