@@ -10,38 +10,41 @@ import {
   useDisclosure,
 } from "@nextui-org/react"
 
+import type { BloodPost } from "@/@types/posts.type"
 import type { Address } from "@/@types/profile"
+import bloodPostService from "@/services/blood-post.service"
+import { HeartHandshake, X } from "lucide-react"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
+import toast from "react-hot-toast"
 import SelectLocation from "../extras/SelectLocation"
-
-type FormType = {
-  hospital: string
-  date: string
-  time: string
-  blood: string
-  situation: string
-  address: Address
-}
 
 const AddPost = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure()
-  const { register, handleSubmit } = useForm<FormType>()
+  const { register, handleSubmit } = useForm<BloodPost>()
   const [address, setAddress] = useState<Address | null>(null)
 
-  const handleFormAddPost = (data: FormType) => {
+  const handleFormAddPost = async (data: BloodPost) => {
     const packet = {
       ...data,
-      address,
     }
-    console.log(packet)
+    await bloodPostService.createPost(packet).then((_res) => {
+      toast.success("Posted")
+      onOpenChange()
+    })
   }
   return (
     <>
       <div>
         <Button onPress={onOpen}>Add Post</Button>
       </div>
-      <Modal size="2xl" isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal
+        size="2xl"
+        isOpen={isOpen}
+        scrollBehavior="inside"
+        hideCloseButton={true}
+        onOpenChange={onOpenChange}
+      >
         <ModalContent>
           {(onClose) => (
             <>
@@ -49,9 +52,6 @@ const AddPost = () => {
                 Ask For Blood 🩸
               </ModalHeader>
               <ModalBody>
-                <div>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </div>
                 <form
                   onSubmit={handleSubmit(handleFormAddPost)}
                   className="grid lg:grid-cols-2 gap-3"
@@ -80,18 +80,30 @@ const AddPost = () => {
                       />
                     </div>
                   </div>
-                  <div className="lg:col-span-2">
-                    <Input
-                      color="primary"
-                      variant="underlined"
-                      label="Describe Area"
-                      {...register("address.street")}
-                    />
-                  </div>
+
+                  <Input
+                    color="primary"
+                    variant="underlined"
+                    label="Contact Number"
+                    {...register("phone")}
+                  />
+
+                  <Select
+                    label="অবস্থা"
+                    placeholder="রোগীর অবস্থা"
+                    className="font-bangla"
+                    color="primary"
+                    isRequired
+                    {...register("situation")}
+                  >
+                    {["জরুরী", "সাধারণ"]?.map((situation) => (
+                      <SelectItem key={situation}>{situation}</SelectItem>
+                    ))}
+                  </Select>
 
                   <Select
                     label="রক্তের গ্রূপ"
-                    placeholder="আপনার রক্তের গ্রূপ নির্বাচন করুন"
+                    placeholder="রোগীর রক্তের গ্রূপ নির্বাচন করুন"
                     className="font-bangla"
                     color="primary"
                     isRequired
@@ -104,21 +116,41 @@ const AddPost = () => {
                     )}
                   </Select>
                   <Select
-                    label="অবস্থা"
-                    placeholder="রোগীর অবস্থা"
+                    label="রোগী"
+                    placeholder="রোগীর লিঙ্গ"
                     className="font-bangla"
                     color="primary"
                     isRequired
-                    {...register("situation")}
+                    {...register("gender")}
                   >
-                    {["জরুরি", "সাধারণ", "কম জরুরি"]?.map((situation) => (
-                      <SelectItem key={situation}>{situation}</SelectItem>
+                    {["পুরুষ", "মহিলা"]?.map((gender) => (
+                      <SelectItem key={gender}>{gender}</SelectItem>
                     ))}
                   </Select>
+                  <div className="lg:col-span-2">
+                    <Input
+                      color="primary"
+                      variant="underlined"
+                      label="Describe Area"
+                    />
+                  </div>
                   <SelectLocation setAddress={setAddress} />
-                  <div className="flex justify-end lg:col-span-2">
-                    <Button color="primary" type="submit">
-                      Submit
+                  <div className="flex justify-end lg:col-span-2 gap-3">
+                    <Button
+                      color="default"
+                      className="uppercase font-bold"
+                      onClick={() => onClose()}
+                    >
+                      Close
+                      <X />
+                    </Button>
+                    <Button
+                      color="primary"
+                      type="submit"
+                      className="uppercase font-bold"
+                    >
+                      Post
+                      <HeartHandshake />
                     </Button>
                   </div>
                 </form>

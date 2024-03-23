@@ -1,8 +1,18 @@
+import type { BloodPost } from "@/@types/posts.type"
 import { Avatar, Card, CardBody, CardHeader } from "@nextui-org/react"
+import {
+  CalendarDays,
+  Clock,
+  Droplet,
+  HeartHandshake,
+  Phone,
+  Podcast,
+  User,
+} from "lucide-react"
 
-const PostCard = () => {
+const PostCard = ({ item }: { item: BloodPost }) => {
   return (
-    <Card className="lg:w-3/5 z-0">
+    <Card className="z-0 w-full">
       <CardHeader className="justify-between z-0">
         <div className="flex gap-5 z-0">
           <Avatar
@@ -13,27 +23,41 @@ const PostCard = () => {
           />
           <div className="flex flex-col gap-1 items-start justify-center">
             <h4 className="text-small font-semibold leading-none text-default-600">
-              Zoey Lang
+              User
             </h4>
           </div>
         </div>
       </CardHeader>
-      <CardBody className="px-3 py-2 text-small z-0">
-        <p>
-          Frontend developer and UI/UX enthusiast. Join me on this coding
-          adventure! Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Eveniet natus sunt ex maxime nemo repellendus aliquid aperiam
-          excepturi architecto tenetur? Lorem ipsum dolor sit amet consectetur,
-          adipisicing elit. Natus deleniti est doloremque voluptas provident aut
-          aliquam facere ab tempora perferendis! Animi, tempore harum.
-          Dignissimos quasi similique itaque vero dolor autem!\
-        </p>
-        <span className="pt-2">
-          #FrontendWithZoey
-          <span className="py-2" aria-label="computer" role="img">
-            💻
-          </span>
-        </span>
+      <CardBody className="p-3 z-0">
+        <div className="flex flex-col gap-2">
+          <p className="flex flex-row gap-2 font-bold text-lg">
+            <HeartHandshake /> <span>{item?.hospital}</span>
+          </p>
+          <p className="flex flex-row gap-2">
+            <Phone />
+            <span className="underline">{item?.phone}</span>
+          </p>
+          <p className="flex flex-row gap-2">
+            <Droplet />
+            <span className="font-bold">{item?.blood}</span>
+          </p>
+          <p className="flex flex-row gap-2">
+            <User />
+            <span>{item?.gender}</span>
+          </p>
+          <p className="flex flex-row gap-2">
+            <Podcast />
+            <span>{item?.situation}</span>
+          </p>
+          <p className="flex flex-row gap-2">
+            <CalendarDays />
+            <span>{new Date(item?.date).toLocaleDateString()}</span>
+          </p>
+          <p className="flex flex-row gap-2">
+            <Clock />
+            <span>{item?.time}</span>
+          </p>
+        </div>
       </CardBody>
     </Card>
   )

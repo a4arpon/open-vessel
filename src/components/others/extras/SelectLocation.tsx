@@ -57,7 +57,7 @@ const SelectLocation = ({
     <>
       <Select
         label="বিভাগ"
-        placeholder="আপনার বিভাগ নির্বাচণ করুন"
+        placeholder="বিভাগ নির্বাচণ করুন"
         scrollShadowProps={{
           isEnabled: false,
         }}
@@ -73,7 +73,7 @@ const SelectLocation = ({
 
       <Select
         label="জেলা"
-        placeholder="আপনার জেলা নির্বাচণ করুন"
+        placeholder="জেলা নির্বাচণ করুন"
         scrollShadowProps={{
           isEnabled: false,
         }}
@@ -91,7 +91,7 @@ const SelectLocation = ({
 
       <Select
         label="উপজেলা"
-        placeholder="আপনার উপজেলা নির্বাচণ করুন"
+        placeholder="উপজেলা নির্বাচণ করুন"
         scrollShadowProps={{
           isEnabled: false,
         }}
@@ -109,7 +109,7 @@ const SelectLocation = ({
 
       <Select
         label="ইউনিয়ন"
-        placeholder="আপনার ইউনিয়ন নির্বাচণ করুন"
+        placeholder="ইউনিয়ন নির্বাচণ করুন"
         scrollShadowProps={{
           isEnabled: false,
         }}
