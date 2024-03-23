@@ -1,3 +1,4 @@
+import AddPost from "@/components/others/homepage/AddPost"
 import PostCard from "@/components/others/homepage/PostCard"
 import SearchBar from "@/components/others/homepage/SearchBar"
 import { createLazyFileRoute } from "@tanstack/react-router"
@@ -11,6 +12,7 @@ export const Route = createLazyFileRoute("/")({
       </Helmet>
       <section className="flex flex-col gap-5 items-center">
         <SearchBar />
+        <AddPost />
         <PostCard />
         <PostCard />
         <PostCard />
