@@ -6,7 +6,7 @@ import { useContext } from "react"
 const Navigator = () => {
   const { toggleSidebar } = useContext(ConfigContext)
   return (
-    <footer className="bg-danger fixed lg:static bottom-0 w-full text-background flex justify-around items-center p-3 lg:col-span-8 h-fit lg:hidden z-10">
+    <footer className="bg-primary fixed lg:static bottom-0 w-full text-background flex justify-around items-center p-3 lg:col-span-8 h-fit lg:hidden z-10">
       <Link to="/">
         <Compass size={28} />
       </Link>

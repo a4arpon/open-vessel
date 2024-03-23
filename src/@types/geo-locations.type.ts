@@ -15,7 +15,7 @@ export type District = {
   url: string
 }
 
-export type Upazillas = {
+export type Upazilla = {
   id: string
   district_id: string
   name: string
@@ -23,7 +23,7 @@ export type Upazillas = {
   url: string
 }
 
-export type Unions = {
+export type Union = {
   id: string
   upazilla_id: string
   name: string

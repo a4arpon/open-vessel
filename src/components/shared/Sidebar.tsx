@@ -24,7 +24,7 @@ const Sidebar = () => {
     >
       <div
         className={className(
-          "h-full min-h-screen bg-danger lg:bg-background backdrop-blur text-background w-[90%] lg:w-full lg:backdrop-blur-none"
+          "h-full min-h-screen bg-primary lg:bg-background backdrop-blur text-background w-[90%] lg:w-full lg:backdrop-blur-none"
         )}
       >
         <div className="relative lg:hidden lg:static">
@@ -52,7 +52,7 @@ const Sidebar = () => {
               key={`${`${index}`}`}
               activeProps={{
                 className:
-                  "bg-background text-foreground lg:bg-danger lg:text-background",
+                  "bg-background text-foreground lg:bg-primary lg:text-background",
               }}
             >
               {item?.icon}
