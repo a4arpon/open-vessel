@@ -6,14 +6,29 @@ import { useContext } from "react"
 const Navigator = () => {
   const { toggleSidebar } = useContext(ConfigContext)
   return (
-    <footer className="bg-primary fixed lg:static bottom-0 w-full text-background flex justify-around items-center p-3 lg:col-span-8 h-fit lg:hidden z-10">
-      <Link to="/">
+    <footer className="bg-primary fixed lg:static bottom-0 w-full text-background/70 flex justify-around items-center p-3 lg:col-span-8 h-fit lg:hidden z-10">
+      <Link
+        to="/"
+        activeProps={{
+          className: "text-background",
+        }}
+      >
         <Compass size={28} />
       </Link>
-      <Link to="/notifications">
+      <Link
+        to="/notifications"
+        activeProps={{
+          className: "text-background",
+        }}
+      >
         <Bell size={28} />
       </Link>
-      <Link to="/profile">
+      <Link
+        to="/profile"
+        activeProps={{
+          className: "text-background",
+        }}
+      >
         <UserRound size={28} />
       </Link>
       <div className="lg:hidden">
@@ -26,5 +41,3 @@ const Navigator = () => {
 }
 
 export default Navigator
-
-

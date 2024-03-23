@@ -1,15 +1,7 @@
 import className from "@/lib/className"
 import { ConfigContext } from "@/providers/ConfigContext"
 import { Link } from "@tanstack/react-router"
-import {
-  Bell,
-  ChevronLeft,
-  Compass,
-  FileClock,
-  Ship,
-  ShoppingBag,
-  UserRound,
-} from "lucide-react"
+import { Bell, ChevronLeft, Compass, FileClock, UserRound } from "lucide-react"
 import { useContext } from "react"
 
 const Sidebar = () => {
@@ -88,14 +80,14 @@ const sidebarItems = [
     to: "/profile",
     icon: <UserRound size={28} />,
   },
-  {
-    name: "Vessel",
-    to: "/vessel",
-    icon: <Ship size={28} />,
-  },
-  {
-    name: "Mart",
-    to: "/mart",
-    icon: <ShoppingBag size={28} />,
-  },
+  // {
+  //   name: "Vessel",
+  //   to: "/vessel",
+  //   icon: <Ship size={28} />,
+  // },
+  // {
+  //   name: "Mart",
+  //   to: "/mart",
+  //   icon: <ShoppingBag size={28} />,
+  // },
 ]

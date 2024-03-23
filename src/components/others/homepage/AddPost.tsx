@@ -13,7 +13,7 @@ import {
 import type { BloodPost } from "@/@types/posts.type"
 import type { Address } from "@/@types/profile"
 import bloodPostService from "@/services/blood-post.service"
-import { HeartHandshake, X } from "lucide-react"
+import { HeartHandshake, Plus, X } from "lucide-react"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import toast from "react-hot-toast"
@@ -35,9 +35,9 @@ const AddPost = () => {
   }
   return (
     <>
-      <div>
-        <Button onPress={onOpen}>Add Post</Button>
-      </div>
+      <Button isIconOnly color="primary" radius="lg" onClick={() => onOpen()}>
+        <Plus />
+      </Button>
       <Modal
         size="2xl"
         isOpen={isOpen}
