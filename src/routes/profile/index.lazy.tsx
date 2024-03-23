@@ -1,22 +1,41 @@
-import authService from "@/services/auth.service"
-import { Button } from "@nextui-org/react"
-import { Link, Outlet, createLazyFileRoute } from "@tanstack/react-router"
+import { UserContext } from "@/providers/UserContext"
+import { createLazyFileRoute } from "@tanstack/react-router"
+import { BriefcaseBusiness, Phone } from "lucide-react"
+import { useContext } from "react"
 import { Helmet } from "react-helmet-async"
 
-export const Route = createLazyFileRoute("/profile/")({
-  component: () => (
+const Component = () => {
+  const { profile } = useContext(UserContext)
+  return (
     <>
       <Helmet>
-        <title>Profile | TheWayne's Vessel</title>
+        <title>Profile | Wayne'sVessel</title>
       </Helmet>
-      <p>Hello Router Page</p>
-      <Button onClick={async () => console.log(await authService.getProfile())}>
-        Get Profile
-      </Button>
-      <div className="px-5" />
-      <br />
-      <Link to="/auth">Login</Link>
-      <Outlet />
+      <div>
+        <div className="border-b-2 pb-5 pt-3 lg:pb-10 lg:pt-5 border-primary">
+          <h3 className="text-3xl lg:text-5xl font-bold text-primary">
+            {profile?.name}
+          </h3>
+        </div>
+        <div className="grid lg:grid-cols-2 gap-3 mt-5">
+          <div>
+            <p className="flex items-center gap-2">
+              <BriefcaseBusiness />
+              {profile?.profession}
+            </p>
+          </div>
+          <div>
+            <p className="flex items-center gap-2">
+              <Phone />
+              {profile?.phone}
+            </p>
+          </div>
+        </div>
+      </div>
     </>
-  ),
+  )
+}
+
+export const Route = createLazyFileRoute("/profile/")({
+  component: Component,
 })

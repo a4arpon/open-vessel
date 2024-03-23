@@ -5,6 +5,7 @@ import { HelmetProvider } from "react-helmet-async"
 import { Toaster } from "react-hot-toast"
 import "./index.css"
 import ConfigContextProvider from "./providers/ConfigContext"
+import UserContextProvider from "./providers/UserContext"
 import { routeTree } from "./routeTree.gen"
 
 const router = createRouter({ routeTree })
@@ -21,7 +22,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <HelmetProvider>
       <ConfigContextProvider>
-        <RouterProvider router={router} />
+        <UserContextProvider>
+          <RouterProvider router={router} />
+        </UserContextProvider>
       </ConfigContextProvider>
       <Toaster />
     </HelmetProvider>

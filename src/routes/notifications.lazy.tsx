@@ -5,7 +5,7 @@ export const Route = createLazyFileRoute("/notifications")({
   component: () => (
     <>
       <Helmet>
-        <title>Notifications | TheWayne's Vessel</title>
+        <title>Notifications | Wayne'sVessel</title>
       </Helmet>
       <p>Hello Router Notification Router Page</p>
     </>

@@ -3,20 +3,23 @@ import PostCard from "@/components/others/homepage/PostCard"
 import SearchBar from "@/components/others/homepage/SearchBar"
 import bloodPostService from "@/services/blood-post.service"
 import { createLazyFileRoute } from "@tanstack/react-router"
-import { lazy, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { Helmet } from "react-helmet-async"
-const AddPost = lazy(() => import("@/components/others/homepage/AddPost"))
 
 const Component = () => {
   const [posts, setPosts] = useState<BloodPost[] | null>(null)
 
   useEffect(() => {
-    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-    bloodPostService.posts().then((res: any) => {
-      if (res) {
-        setPosts(res)
-      }
-    })
+    const fetchData = async () => {
+      console.log("Render Render")
+      // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+      await bloodPostService.posts().then((res: any) => {
+        if (res) {
+          setPosts(res)
+        }
+      })
+    }
+    fetchData()
     return () => {
       setPosts(null)
     }
@@ -25,7 +28,7 @@ const Component = () => {
   return (
     <>
       <Helmet>
-        <title>Home Feed | TheWayne's Vessel</title>
+        <title>Home Feed | Wayne'sVessel</title>
       </Helmet>
       <section className="flex flex-col gap-5 items-center">
         <SearchBar />

@@ -53,7 +53,7 @@ const Auth = () => {
   return (
     <>
       <Helmet>
-        <title>Authentication | Open Vessel</title>
+        <title>Authentication | Wayne'sVessel</title>
       </Helmet>
       {!isLoading && (
         <div className="w-full min-h-screen flex items-center justify-center">

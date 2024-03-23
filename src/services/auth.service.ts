@@ -58,7 +58,8 @@ export class AuthService {
 
   async getProfile() {
     try {
-      return await this.account.get()
+      const profile = await this.account.get()
+      return profile.prefs
     } catch (error) {
       console.error("Get Profile Error ", error)
     }

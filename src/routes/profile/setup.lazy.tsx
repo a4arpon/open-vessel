@@ -34,7 +34,7 @@ const SetupProfile = () => {
   return (
     <>
       <Helmet>
-        <title>Setup Profile | TheWayne's Vessel</title>
+        <title>Setup Profile | Wayne'sVessel</title>
       </Helmet>
       <div>
         <form

@@ -15,7 +15,7 @@ const Verify = () => {
   return (
     <>
       <Helmet>
-        <title>Verify Account | TheWayne's Vessel</title>
+        <title>Verify Account | Wayne'sVessel</title>
       </Helmet>
       <div>
         <Button
