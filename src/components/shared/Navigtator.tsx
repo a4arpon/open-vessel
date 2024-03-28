@@ -8,7 +8,7 @@ const Navigator = () => {
   return (
     <footer className="bg-primary fixed lg:static bottom-0 w-full text-background/70 flex justify-around items-center p-3 lg:col-span-8 h-fit lg:hidden z-10">
       <Link
-        to="/"
+        to="/app/"
         activeProps={{
           className: "text-background",
         }}
@@ -16,7 +16,7 @@ const Navigator = () => {
         <Compass size={28} />
       </Link>
       <Link
-        to="/notifications"
+        to="/app/notifications"
         activeProps={{
           className: "text-background",
         }}
@@ -24,7 +24,7 @@ const Navigator = () => {
         <Bell size={28} />
       </Link>
       <Link
-        to="/profile"
+        to="/app/profile"
         activeProps={{
           className: "text-background",
         }}

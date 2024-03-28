@@ -62,22 +62,22 @@ export default Sidebar
 const sidebarItems = [
   {
     name: "Feed",
-    to: "/",
+    to: "/app/",
     icon: <Compass size={28} />,
   },
   {
     name: "Notifications",
-    to: "/notifications",
+    to: "/app/notifications",
     icon: <Bell size={28} />,
   },
   {
     name: "History",
-    to: "/history",
+    to: "/app/history",
     icon: <FileClock size={28} />,
   },
   {
     name: "Profile",
-    to: "/profile",
+    to: "/app/profile",
     icon: <UserRound size={28} />,
   },
   // {

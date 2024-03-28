@@ -1,13 +1,13 @@
 import { createLazyFileRoute } from "@tanstack/react-router"
 import { Helmet } from "react-helmet-async"
 
-export const Route = createLazyFileRoute("/post")({
+export const Route = createLazyFileRoute("/app/_layout/notifications")({
   component: () => (
     <>
       <Helmet>
-        <title>Post | Wayne'sVessel</title>
+        <title>Notifications | Wayne'sVessel</title>
       </Helmet>
-      <p>Hello Router Page post</p>
+      <p>Hello Router Notification Router Page</p>
     </>
   ),
 })

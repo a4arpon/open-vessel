@@ -37,19 +37,10 @@ const SelectLocation = ({
     const _union = unions?.find((item) => item?.id === index)
 
     setAddress({
-      state: {
-        id: division?.id ?? "",
-        name: division?.bn_name ?? "",
-      },
-      city: {
-        id: district?.id ?? "",
-        name: district?.bn_name ?? "",
-      },
-      upazila: {
-        id: upazila?.id ?? "",
-        name: upazila?.bn_name ?? "",
-      },
-      union: { id: _union?.id ?? "", name: _union?.bn_name ?? "" },
+      addressState: division?.bn_name ?? "",
+      addressCity: district?.bn_name ?? "",
+      addressUpazila: upazila?.bn_name ?? "",
+      addressUnion: _union?.bn_name ?? "",
     })
   }
 

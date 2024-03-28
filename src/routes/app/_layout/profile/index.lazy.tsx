@@ -36,6 +36,6 @@ const Component = () => {
   )
 }
 
-export const Route = createLazyFileRoute("/profile/")({
+export const Route = createLazyFileRoute("/app/_layout/profile/")({
   component: Component,
 })

@@ -30,6 +30,6 @@ const Verify = () => {
   )
 }
 
-export const Route = createLazyFileRoute("/verify")({
+export const Route = createLazyFileRoute("/auth/verify")({
   component: Verify,
 })

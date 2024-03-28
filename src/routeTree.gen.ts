@@ -13,59 +13,97 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as AppLayoutImport } from './routes/app/_layout'
 
 // Create Virtual Routes
 
-const VerifyLazyImport = createFileRoute('/verify')()
-const PostLazyImport = createFileRoute('/post')()
-const NotificationsLazyImport = createFileRoute('/notifications')()
-const HistoryLazyImport = createFileRoute('/history')()
-const AuthLazyImport = createFileRoute('/auth')()
+const AppImport = createFileRoute('/app')()
 const IndexLazyImport = createFileRoute('/')()
-const ProfileIndexLazyImport = createFileRoute('/profile/')()
-const ProfileSetupLazyImport = createFileRoute('/profile/setup')()
+const AuthIndexLazyImport = createFileRoute('/auth/')()
+const AuthVerifyLazyImport = createFileRoute('/auth/verify')()
+const AppLayoutIndexLazyImport = createFileRoute('/app/_layout/')()
+const AppLayoutPostLazyImport = createFileRoute('/app/_layout/post')()
+const AppLayoutNotificationsLazyImport = createFileRoute(
+  '/app/_layout/notifications',
+)()
+const AppLayoutHistoryLazyImport = createFileRoute('/app/_layout/history')()
+const AppLayoutProfileIndexLazyImport = createFileRoute(
+  '/app/_layout/profile/',
+)()
+const AppLayoutProfileSetupLazyImport = createFileRoute(
+  '/app/_layout/profile/setup',
+)()
 
 // Create/Update Routes
 
-const VerifyLazyRoute = VerifyLazyImport.update({
-  path: '/verify',
+const AppRoute = AppImport.update({
+  path: '/app',
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/verify.lazy').then((d) => d.Route))
-
-const PostLazyRoute = PostLazyImport.update({
-  path: '/post',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/post.lazy').then((d) => d.Route))
-
-const NotificationsLazyRoute = NotificationsLazyImport.update({
-  path: '/notifications',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/notifications.lazy').then((d) => d.Route))
-
-const HistoryLazyRoute = HistoryLazyImport.update({
-  path: '/history',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/history.lazy').then((d) => d.Route))
-
-const AuthLazyRoute = AuthLazyImport.update({
-  path: '/auth',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/auth.lazy').then((d) => d.Route))
+} as any)
 
 const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
 
-const ProfileIndexLazyRoute = ProfileIndexLazyImport.update({
-  path: '/profile/',
+const AuthIndexLazyRoute = AuthIndexLazyImport.update({
+  path: '/auth/',
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/profile/index.lazy').then((d) => d.Route))
+} as any).lazy(() => import('./routes/auth/index.lazy').then((d) => d.Route))
 
-const ProfileSetupLazyRoute = ProfileSetupLazyImport.update({
-  path: '/profile/setup',
+const AuthVerifyLazyRoute = AuthVerifyLazyImport.update({
+  path: '/auth/verify',
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/profile/setup.lazy').then((d) => d.Route))
+} as any).lazy(() => import('./routes/auth/verify.lazy').then((d) => d.Route))
+
+const AppLayoutRoute = AppLayoutImport.update({
+  id: '/_layout',
+  getParentRoute: () => AppRoute,
+} as any)
+
+const AppLayoutIndexLazyRoute = AppLayoutIndexLazyImport.update({
+  path: '/',
+  getParentRoute: () => AppLayoutRoute,
+} as any).lazy(() =>
+  import('./routes/app/_layout/index.lazy').then((d) => d.Route),
+)
+
+const AppLayoutPostLazyRoute = AppLayoutPostLazyImport.update({
+  path: '/post',
+  getParentRoute: () => AppLayoutRoute,
+} as any).lazy(() =>
+  import('./routes/app/_layout/post.lazy').then((d) => d.Route),
+)
+
+const AppLayoutNotificationsLazyRoute = AppLayoutNotificationsLazyImport.update(
+  {
+    path: '/notifications',
+    getParentRoute: () => AppLayoutRoute,
+  } as any,
+).lazy(() =>
+  import('./routes/app/_layout/notifications.lazy').then((d) => d.Route),
+)
+
+const AppLayoutHistoryLazyRoute = AppLayoutHistoryLazyImport.update({
+  path: '/history',
+  getParentRoute: () => AppLayoutRoute,
+} as any).lazy(() =>
+  import('./routes/app/_layout/history.lazy').then((d) => d.Route),
+)
+
+const AppLayoutProfileIndexLazyRoute = AppLayoutProfileIndexLazyImport.update({
+  path: '/profile/',
+  getParentRoute: () => AppLayoutRoute,
+} as any).lazy(() =>
+  import('./routes/app/_layout/profile/index.lazy').then((d) => d.Route),
+)
+
+const AppLayoutProfileSetupLazyRoute = AppLayoutProfileSetupLazyImport.update({
+  path: '/profile/setup',
+  getParentRoute: () => AppLayoutRoute,
+} as any).lazy(() =>
+  import('./routes/app/_layout/profile/setup.lazy').then((d) => d.Route),
+)
 
 // Populate the FileRoutesByPath interface
 
@@ -75,33 +113,45 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexLazyImport
       parentRoute: typeof rootRoute
     }
-    '/auth': {
-      preLoaderRoute: typeof AuthLazyImport
+    '/app': {
+      preLoaderRoute: typeof AppImport
       parentRoute: typeof rootRoute
     }
-    '/history': {
-      preLoaderRoute: typeof HistoryLazyImport
+    '/app/_layout': {
+      preLoaderRoute: typeof AppLayoutImport
+      parentRoute: typeof AppRoute
+    }
+    '/auth/verify': {
+      preLoaderRoute: typeof AuthVerifyLazyImport
       parentRoute: typeof rootRoute
     }
-    '/notifications': {
-      preLoaderRoute: typeof NotificationsLazyImport
+    '/auth/': {
+      preLoaderRoute: typeof AuthIndexLazyImport
       parentRoute: typeof rootRoute
     }
-    '/post': {
-      preLoaderRoute: typeof PostLazyImport
-      parentRoute: typeof rootRoute
+    '/app/_layout/history': {
+      preLoaderRoute: typeof AppLayoutHistoryLazyImport
+      parentRoute: typeof AppLayoutImport
     }
-    '/verify': {
-      preLoaderRoute: typeof VerifyLazyImport
-      parentRoute: typeof rootRoute
+    '/app/_layout/notifications': {
+      preLoaderRoute: typeof AppLayoutNotificationsLazyImport
+      parentRoute: typeof AppLayoutImport
     }
-    '/profile/setup': {
-      preLoaderRoute: typeof ProfileSetupLazyImport
-      parentRoute: typeof rootRoute
+    '/app/_layout/post': {
+      preLoaderRoute: typeof AppLayoutPostLazyImport
+      parentRoute: typeof AppLayoutImport
     }
-    '/profile/': {
-      preLoaderRoute: typeof ProfileIndexLazyImport
-      parentRoute: typeof rootRoute
+    '/app/_layout/': {
+      preLoaderRoute: typeof AppLayoutIndexLazyImport
+      parentRoute: typeof AppLayoutImport
+    }
+    '/app/_layout/profile/setup': {
+      preLoaderRoute: typeof AppLayoutProfileSetupLazyImport
+      parentRoute: typeof AppLayoutImport
+    }
+    '/app/_layout/profile/': {
+      preLoaderRoute: typeof AppLayoutProfileIndexLazyImport
+      parentRoute: typeof AppLayoutImport
     }
   }
 }
@@ -110,13 +160,18 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren([
   IndexLazyRoute,
-  AuthLazyRoute,
-  HistoryLazyRoute,
-  NotificationsLazyRoute,
-  PostLazyRoute,
-  VerifyLazyRoute,
-  ProfileSetupLazyRoute,
-  ProfileIndexLazyRoute,
+  AppRoute.addChildren([
+    AppLayoutRoute.addChildren([
+      AppLayoutHistoryLazyRoute,
+      AppLayoutNotificationsLazyRoute,
+      AppLayoutPostLazyRoute,
+      AppLayoutIndexLazyRoute,
+      AppLayoutProfileSetupLazyRoute,
+      AppLayoutProfileIndexLazyRoute,
+    ]),
+  ]),
+  AuthVerifyLazyRoute,
+  AuthIndexLazyRoute,
 ])
 
 /* prettier-ignore-end */

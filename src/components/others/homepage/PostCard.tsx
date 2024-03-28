@@ -5,6 +5,8 @@ import {
   Clock,
   Droplet,
   HeartHandshake,
+  MapPinned,
+  Map as Mapp,
   Phone,
   Podcast,
   User,
@@ -30,33 +32,48 @@ const PostCard = ({ item }: { item: BloodPost }) => {
       </CardHeader>
       <CardBody className="p-3 z-0">
         <div className="flex flex-col gap-2">
-          <p className="flex flex-row gap-2 font-bold text-lg">
+          <p className="flex flex-row gap-2 font-bold text-lg items-center">
             <HeartHandshake /> <span>{item?.hospital}</span>
           </p>
-          <p className="flex flex-row gap-2">
-            <Phone />
-            <span className="underline">{item?.phone}</span>
-          </p>
-          <p className="flex flex-row gap-2">
-            <Droplet />
-            <span className="font-bold">{item?.blood}</span>
-          </p>
-          <p className="flex flex-row gap-2">
-            <User />
-            <span>{item?.gender}</span>
-          </p>
-          <p className="flex flex-row gap-2">
-            <Podcast />
-            <span>{item?.situation}</span>
-          </p>
-          <p className="flex flex-row gap-2">
+          <div className="grid grid-cols-2 gap-2">
+            <p className="flex flex-row gap-2 items-center">
+              <Phone />
+              <span className="underline">{item?.phone}</span>
+            </p>
+            <p className="flex flex-row gap-2 items-center">
+              <Droplet />
+              <span className="font-bold">{item?.blood}</span>
+            </p>
+            <p className="flex flex-row gap-2 items-center">
+              <User />
+              <span>{item?.gender}</span>
+            </p>
+            <p className="flex flex-row gap-2 items-center">
+              <Podcast />
+              <span>{item?.situation}</span>
+            </p>
+          </div>
+          <p className="flex flex-row gap-2 items-center">
             <CalendarDays />
             <span>{new Date(item?.date).toLocaleDateString()}</span>
           </p>
-          <p className="flex flex-row gap-2">
+          <p className="flex flex-row gap-2 items-center">
             <Clock />
             <span>{item?.time}</span>
           </p>
+          <p className="flex flex-row gap-2 items-center">
+            <Mapp />
+            <span>{item?.addressStreet ?? "Not Available"}</span>
+          </p>
+          <div className="flex items-start gap-2">
+            <MapPinned />
+            <p>
+              {item?.addressUnion ?? "Not Available"},{" "}
+              {item?.addressUpazila ?? "Not Available"},{" "}
+              {item?.addressCity ?? "Not Available"},{" "}
+              {item?.addressState ?? "Not Available"}
+            </p>
+          </div>
         </div>
       </CardBody>
     </Card>

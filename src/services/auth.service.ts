@@ -59,7 +59,7 @@ export class AuthService {
   async getProfile() {
     try {
       const profile = await this.account.get()
-      return profile.prefs
+      return profile
     } catch (error) {
       console.error("Get Profile Error ", error)
     }

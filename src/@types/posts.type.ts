@@ -1,3 +1,5 @@
+import type { Address } from "./profile"
+
 export type BloodPost = {
   hospital: string
   phone: string
@@ -12,4 +14,4 @@ export type BloodPost = {
   $permissions: string[]
   $databaseId: string
   $collectionId: string
-}
+} & Address

@@ -27,7 +27,9 @@ const AddPost = () => {
   const handleFormAddPost = async (data: BloodPost) => {
     const packet = {
       ...data,
+      ...address,
     }
+    console.log(packet)
     await bloodPostService.createPost(packet).then((_res) => {
       toast.success("Posted")
       onOpenChange()
@@ -44,6 +46,7 @@ const AddPost = () => {
         scrollBehavior="inside"
         hideCloseButton={true}
         onOpenChange={onOpenChange}
+        isDismissable={false}
       >
         <ModalContent>
           {(onClose) => (
@@ -62,6 +65,7 @@ const AddPost = () => {
                       variant="underlined"
                       label="Hospital Name"
                       {...register("hospital")}
+                      autoComplete="off"
                     />
                     <div className="flex flex-row gap-3">
                       <Input
@@ -70,6 +74,7 @@ const AddPost = () => {
                         label="Date"
                         type="date"
                         {...register("date")}
+                        autoComplete="off"
                       />
                       <Input
                         color="primary"
@@ -77,6 +82,7 @@ const AddPost = () => {
                         label="Time"
                         type="time"
                         {...register("time")}
+                        autoComplete="off"
                       />
                     </div>
                   </div>
@@ -86,6 +92,7 @@ const AddPost = () => {
                     variant="underlined"
                     label="Contact Number"
                     {...register("phone")}
+                    autoComplete="off"
                   />
 
                   <Select
@@ -132,6 +139,8 @@ const AddPost = () => {
                       color="primary"
                       variant="underlined"
                       label="Describe Area"
+                      autoComplete="off"
+                      {...register("addressStreet")}
                     />
                   </div>
                   <SelectLocation setAddress={setAddress} />

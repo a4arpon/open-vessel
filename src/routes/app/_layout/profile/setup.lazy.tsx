@@ -77,6 +77,6 @@ const SetupProfile = () => {
   )
 }
 
-export const Route = createLazyFileRoute("/profile/setup")({
+export const Route = createLazyFileRoute("/app/_layout/profile/setup")({
   component: SetupProfile,
 })
